@@ -17,18 +17,12 @@ import com.google.gson.Gson;
 public class EmployeeController {
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getMovie(@RequestParam String name, @RequestParam String password) {
+	public String getMovie(@RequestParam String firstName, @RequestParam String lastName) {
 
-		String res = "INVALID_USER";
-
-		if (name.equals("admin") && password.equals("admin")) {
-			res = "ADMIN";
-		} else if (name.equals("snehal") && password.equals("snehal")) {
-			res = "VALID_USER";
-		}
-
+		String fullName = firstName + " " + lastName;
+		
 //		return emp.toString();
-		return new Gson().toJson(res);
+		return new Gson().toJson(fullName);
 	}
 
 	@RequestMapping(value = "/display", method = RequestMethod.POST)
