@@ -16,15 +16,20 @@ export class AppComponent {
 
   onSubmit(form: NgForm) {
     // console.log(form);
-    this.getData(); // emo mari.... em jaruguthundhi nuvvu em chesthunnav? Naaku antha greek and latin la undhi
+    console.log('From getData:', this.getData());
+    console.log('From fetchData:', this.fetchData());
   }
 
   getData() {
-    const proxyurl = ''; //@crossorigin chudu
-
-    return this.http.get<string>(proxyurl + this.API_URL).subscribe((res) => {
+    return this.http.get<string>(this.API_URL).subscribe((res) => {
       console.log(res);
       this.data = res;
     });
+  }
+
+  fetchData() {
+    return fetch(this.API_URL)
+      .then((res) => res.json())
+      .then((res) => console.log());
   }
 }
